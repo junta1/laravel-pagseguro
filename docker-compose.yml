@@ -17,10 +17,10 @@ services:
             - '36002:3306'
 
     webserver:
-        image: 'nginx:alpine'
+        image: 'nginx:alpine'   
         working_dir: /application
         volumes:
-            - '.:/application'
+            - './api:/application'
             - './phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
         ports:
             - '36000:80'
@@ -29,5 +29,5 @@ services:
         build: phpdocker/php-fpm
         working_dir: /application
         volumes:
-            - '.:/application'
+            - './api:/application'
             - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini'
